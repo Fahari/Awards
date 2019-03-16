@@ -21,7 +21,7 @@ Awards is a platform where anyone can post their projects for review and comment
 5. Heroku for deployment
 ```
 ## Application link
-click [here](https://tuzo.herokuapp.com//)
+click [here](https://tuzo.herokuapp.com/)
 ## Set up and Installation
 To access this application on your command line, you need to clone it.
 `git clone https://github.com/Fahari/awards.git`
