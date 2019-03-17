@@ -8,7 +8,7 @@ def home(request):
 
 def profile(request):
     current_user = request.user
-    pics = Image.objects.all()
     profile = Profile.objects.all()
+    pics = Image.objects.all()
 
     return render(request, 'registration/profile.html',locals())
