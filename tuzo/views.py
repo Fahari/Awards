@@ -5,7 +5,10 @@ from .forms import *
 
 # Create your views here.
 def home(request):
-    return render(request, 'home.html')
+    context = {
+        'posts': Post.objects.all()
+    }
+    return render(request, 'home.html',context)
 
 @login_required(login_url='/accounts/login/')
 def profile(request):
