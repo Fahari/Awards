@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from django.views.generic import ListView,DetailView
+from django.views.generic import ListView,CreateView,DetailView
+from django.urls import reverse_lazy
 from . models import *
 from .forms import *
 
@@ -46,3 +47,13 @@ class PostListView(ListView):
 
 class PostDetailView(DetailView):
     model = Post
+
+class PostCreateView(CreateView):
+    model = Post
+    fields = ['title','content','author','image']
+    template_name = 'post_form.html'
+    success_url = reverse_lazy('home')
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
