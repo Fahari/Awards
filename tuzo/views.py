@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from django.views.generic import ListView
 from . models import *
 from .forms import *
 
@@ -36,3 +37,8 @@ def profile(request):
     }
 
     return render(request, 'registration/profile.html',locals())
+
+class PostListView(ListView):
+    model = Post
+    template_name = 'home.html'
+    context_object_name = 'posts'
