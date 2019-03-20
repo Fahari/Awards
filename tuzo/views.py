@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from django.views.generic import ListView,CreateView,DetailView
+from django.views.generic import ListView,CreateView,UpdateView,DetailView
 from django.urls import reverse_lazy
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from . models import *
 from .forms import *
 
@@ -55,6 +55,23 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     fields = ['title','content','author','image']
     template_name = 'post_form.html'
     success_url = reverse_lazy('home')
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    login_url = "/accounts/login/"
+    model = Post
+    fields = ['title','content','author','image']
+    template_name = 'post_form.html'
+    success_url = reverse_lazy('home')
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author
+            return True
+        return False
 
     def form_valid(self, form):
         form.instance.author = self.request.user
