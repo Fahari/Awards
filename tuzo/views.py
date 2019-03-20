@@ -50,6 +50,7 @@ class PostDetailView(DetailView):
     model = Post
 
 class PostCreateView(LoginRequiredMixin, CreateView):
+    login_url = "/accounts/login/"
     model = Post
     fields = ['title','content','author','image']
     template_name = 'post_form.html'
