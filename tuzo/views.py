@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from django.views.generic import ListView
+from django.views.generic import ListView,DetailView
 from . models import *
 from .forms import *
 
@@ -43,3 +43,6 @@ class PostListView(ListView):
     template_name = 'home.html'
     context_object_name = 'posts'
     ordering = ['-date_posted']
+
+class PostDetailView(DetailView):
+    model = Post
