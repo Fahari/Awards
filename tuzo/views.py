@@ -85,3 +85,14 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin,DeleteView):
         if self.request.user == post.author:
             return True
         return False
+
+def search(request):
+    if 'search' in request.GET and request.GET['search']:
+        search_term = request.GET.get('search')
+        project = Post.search_project(search_term)
+        message = f'{search_term}'
+
+        return render(request, 'search.html',{'message':message, 'project':project})
+    else:
+        message = 'Enter term to search'
+    return render(request, 'search.html', {'message':message})
