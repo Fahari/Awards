@@ -1,7 +1,9 @@
 {%extends 'base.html'%}
-
+{% load static %}
 {% block content %}
 {{block.super}}
+
+<link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
 
 <br>
 <br>
@@ -29,6 +31,8 @@
         <footer class="w3-container">
           <p class='article-content'>{{ post.content }}</p>
           <button class="btn btn-outline-success">Rate me</button>
+          {% load ratings %}
+          {% ratings post %}
         </footer>
       </div>
       <br><br><br><br>
@@ -40,4 +44,5 @@
 
 </div>
 
+<script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
 {% endblock %}

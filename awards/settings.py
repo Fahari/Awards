@@ -138,6 +138,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
+STAR_RATINGS_RERATE = False
+STAR_RATINGS_RANGE = 10
+STAR_RATINGS_ANONYMOUS = True
+STAR_RATINGS_STAR_HEIGHT = 20
+STAR_RATINGS_STAR_WIDTH = 20
+
 LOGIN_REDIRECT_URL = "home"
 LOGIN_URL = 'login'
 

@@ -41,5 +41,11 @@ class Post(models.Model):
 
     def save_post(self):
         self.save()
+
     def delete_profile(self):
         self.post()
+
+    @classmethod
+    def search_project(cls, name):
+        pro = Post.objects.filter(title__icontains = name)
+        return pro
