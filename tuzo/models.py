@@ -11,6 +11,10 @@ class Image(models.Model):
     def __str__(self):
         return self.name
 
+    def save_image(self):
+        self.save()
+
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
