@@ -13,3 +13,19 @@ class ImageTestClass(TestCase):
         self.assertTrue(len(images) > 0)
     def tearDown(self):
         Image.objects.all().delete()
+
+class PostTestClass(TestCase):
+    def setUp(self):
+
+        self.post= Post(title = 'admin',content ='juju',author = 'me')
+    def test_instance(self):
+        self.assertTrue(isinstance(self.post,Post))
+    def test_save_post(self):
+        self.post.save_post()
+        posts = Post.objects.all()
+        self.assertTrue(len(posts) > 0)
+    def test_delete_post(self):
+        self.post.save_post()
+        self.post.delete_post()
+        posts=Posts.objects.all()
+        self.assertTrue(len(posts)==0)

@@ -21,6 +21,10 @@ class Profile(models.Model):
 
     def __str__(self):
         return f'{self.user.username} Profile'
+    # def save_profile(self):
+    #     self.save()
+    # def delete_profile(self):
+    #     self.delete()
 
 class Post(models.Model):
     title = models.CharField(max_length=100)
@@ -34,3 +38,8 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse('home', kwargs={'pk': self.pk})
+
+    def save_post(self):
+        self.save()
+    def delete_profile(self):
+        self.post()
